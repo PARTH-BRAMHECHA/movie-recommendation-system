@@ -1,0 +1,263 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Recommender</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(120deg, #232526 0%, #414345 100%);
+            min-height: 100vh;
+        }
+        .carousel-inner img {
+            max-height: 350px;
+            width: auto;
+            object-fit: contain;
+            margin: 0 auto;
+            background: #111;
+            border-radius: 12px;
+            box-shadow: 0 6px 32px rgba(0,0,0,0.3);
+        }
+        .recommendation-title {
+            color: #ffd700;
+            font-size: 1.08rem;
+            font-weight: 500;
+            margin-top: 8px;
+            margin-bottom: 0;
+            text-shadow: 1px 1px 8px #000;
+        }
+        .movie-card {
+            background: #181818;
+            border-radius: 14px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.20);
+            padding: 12px 8px 8px 8px;
+            margin-bottom: 24px;
+            transition: transform .15s;
+            min-height: 330px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .movie-card:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.32);
+        }
+        .movie-poster {
+            border-radius: 10px;
+            width: 100%;
+            max-width: 180px;
+            height: 270px;
+            object-fit: contain;
+            background: #222;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+        }
+        .form-select, .btn {
+            font-size: 1.09rem;
+        }
+        .carousel-indicators [data-bs-target] {
+            background-color: #ffd700;
+        }
+        @media (max-width: 600px) {
+            .movie-poster { max-width: 95vw; height: 180px; }
+            .carousel-inner img { max-height: 180px; }
+            .movie-card { min-height: 220px; }
+        }
+    </style>
+</head>
+<body class="bg-dark text-light">
+
+<div class="container py-5">
+    <h1 class="text-center mb-4" style="letter-spacing:1px; color:#ffd700; text-shadow: 1px 1px 12px #000;">🎬 Movie Recommender System</h1>
+
+    <!-- Poster Carousel -->
+    <div id="posterCarousel" class="carousel slide mb-5 shadow" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            {% for poster in preload_posters %}
+            <button type="button" data-bs-target="#posterCarousel" data-bs-slide-to="{{ loop.index0 }}" {% if loop.first %}class="active"{% endif %} aria-current="true" aria-label="Slide {{ loop.index }}"></button>
+            {% endfor %}
+        </div>
+        <div class="carousel-inner">
+            {% for poster in preload_posters %}
+            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                <img src="{{ poster }}" class="d-block" alt="Poster {{ loop.index }}">
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#posterCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#posterCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!-- Movie Select -->
+    <form method="POST" class="text-center mb-5">
+        <label for="movie" class="form-label fs-5 mb-2">Select a movie to get recommendations:</label>
+        <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+            <select name="movie" id="movie" class="form-select" style="max-width: 400px;" required>
+                <option value="">-- Select a movie --</option>
+                {% for title in movie_titles %}
+                <option value="{{ title }}" {% if selected_movie == title %}selected{% endif %}>{{ title }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-warning fw-bold px-4">Show Recommendations</button>
+        </div>
+    </form>
+
+    <!-- Recommendations -->
+    {% if recommendations %}
+    <h3 class="text-center mb-4" style="color:#ffd700;">Recommended for "<span class="fw-bold">{{ selected_movie }}</span>"</h3>
+    <div class="row justify-content-center">
+        {% for title, poster in recommendations %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex">
+            <div class="movie-card w-100">
+                <img src="{{ poster }}" alt="{{ title }} poster" class="movie-poster mb-2">
+                <p class="recommendation-title">{{ title }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Recommender</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(120deg, #232526 0%, #414345 100%);
+            min-height: 100vh;
+        }
+        .carousel-inner img {
+            max-height: 350px;
+            width: auto;
+            object-fit: contain;
+            margin: 0 auto;
+            background: #111;
+            border-radius: 12px;
+            box-shadow: 0 6px 32px rgba(0,0,0,0.3);
+        }
+        .recommendation-title {
+            color: #ffd700;
+            font-size: 1.08rem;
+            font-weight: 500;
+            margin-top: 8px;
+            margin-bottom: 0;
+            text-shadow: 1px 1px 8px #000;
+        }
+        .movie-card {
+            background: #181818;
+            border-radius: 14px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.20);
+            padding: 12px 8px 8px 8px;
+            margin-bottom: 24px;
+            transition: transform .15s;
+            min-height: 330px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .movie-card:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.32);
+        }
+        .movie-poster {
+            border-radius: 10px;
+            width: 100%;
+            max-width: 180px;
+            height: 270px;
+            object-fit: contain;
+            background: #222;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+        }
+        .form-select, .btn {
+            font-size: 1.09rem;
+        }
+        .carousel-indicators [data-bs-target] {
+            background-color: #ffd700;
+        }
+        @media (max-width: 600px) {
+            .movie-poster { max-width: 95vw; height: 180px; }
+            .carousel-inner img { max-height: 180px; }
+            .movie-card { min-height: 220px; }
+        }
+    </style>
+</head>
+<body class="bg-dark text-light">
+
+<div class="container py-5">
+    <h1 class="text-center mb-4" style="letter-spacing:1px; color:#ffd700; text-shadow: 1px 1px 12px #000;">🎬 Movie Recommender System</h1>
+
+    <!-- Poster Carousel -->
+    <div id="posterCarousel" class="carousel slide mb-5 shadow" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            {% for poster in preload_posters %}
+            <button type="button" data-bs-target="#posterCarousel" data-bs-slide-to="{{ loop.index0 }}" {% if loop.first %}class="active"{% endif %} aria-current="true" aria-label="Slide {{ loop.index }}"></button>
+            {% endfor %}
+        </div>
+        <div class="carousel-inner">
+            {% for poster in preload_posters %}
+            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                <img src="{{ poster }}" class="d-block" alt="Poster {{ loop.index }}">
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#posterCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#posterCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!-- Movie Select -->
+    <form method="POST" class="text-center mb-5">
+        <label for="movie" class="form-label fs-5 mb-2">Select a movie to get recommendations:</label>
+        <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+            <select name="movie" id="movie" class="form-select" style="max-width: 400px;" required>
+                <option value="">-- Select a movie --</option>
+                {% for title in movie_titles %}
+                <option value="{{ title }}" {% if selected_movie == title %}selected{% endif %}>{{ title }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-warning fw-bold px-4">Show Recommendations</button>
+        </div>
+    </form>
+
+    <!-- Recommendations -->
+    {% if recommendations %}
+    <h3 class="text-center mb-4" style="color:#ffd700;">Recommended for "<span class="fw-bold">{{ selected_movie }}</span>"</h3>
+    <div class="row justify-content-center">
+        {% for title, poster in recommendations %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 d-flex">
+            <div class="movie-card w-100">
+                <img src="{{ poster }}" alt="{{ title }} poster" class="movie-poster mb-2">
+                <p class="recommendation-title">{{ title }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+>>>>>>> 83ce62c7daa459495ef18a6f70ac156500102f9d
