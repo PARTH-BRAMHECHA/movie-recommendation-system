@@ -17,13 +17,13 @@ Select a movie and instantly get visually appealing recommendations with posters
 
 ## 🚀 Screenshots
 
-### Home & Recommendations
+### Home Page:
 
-![Recommendations Screenshot](https://pplx-res.cloudinary.com/image/private/user_uploads/5939154/877c462b-e20b-497a-9511-a8f0d1880789/Screenshot-2025-06-06-225920.jpg)
+![Home Screenshot](screenshots/Home.png)
 
-### Carousel & Selection
+### Recommendations:
 
-![Carousel Screenshot](https://pplx-res.cloudinary.com/image/private/user_uploads/5939154/3b24ea05-214b-44df-88e9-b470be934036/Screenshot-2025-06-06-225932.jpg)
+![Recommendation Screenshot](screenshots/recommendation.png)
 
 ---
 
