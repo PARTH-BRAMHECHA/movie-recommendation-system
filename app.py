@@ -3,9 +3,14 @@ import pickle
 import requests
 import os
 from dotenv import load_dotenv
+from download_utils import download_file_from_google_drive
 
 # Load environment variables from .env file
 load_dotenv()
+
+# Download necessary pickle files at runtime
+download_file_from_google_drive(os.getenv("MOVIES_FILE_ID"), "movies_list.pkl")
+download_file_from_google_drive(os.getenv("SIMILARITY_FILE_ID"), "similarity.pkl")
 
 app = Flask(__name__)
 
